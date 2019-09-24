@@ -6,7 +6,7 @@ use glium::glutin::{Event, VirtualKeyCode, WindowBuilder};
 
 #[derive(Copy, Clone)]
 struct Vertex {
-    position: [f32, 2],
+    position: [f32; 2],
 }
 
 implement_vertex!(Vertex, position);
@@ -20,7 +20,7 @@ fn main() {
         .unwrap();
 
     // Compile the shaders
-    let program = glium::PRogram::from_source(
+    let program = glium::Program::from_source(
         &display,
         include_str!("mandelbrot.glslv"),
         include_str!("mandelbrot.glslf"), 
@@ -45,7 +45,7 @@ fn main() {
         let mut target = display.draw();
         //Draw the vertices
         target.draw(&vertex_buffer, 
-                    &glium::index::noIndices(glium::ndex::PrimitiveType::TrianglesList),
+                    &glium::index::NoIndices(glium::index::PrimitiveType::TrianglesList),
                     &program, 
                     &uniform! {},
                     &Default::default()).unwrap();
